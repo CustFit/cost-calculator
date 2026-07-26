@@ -292,13 +292,104 @@
     }
 
     .disclaimer {
-      font-size: 12px;
+      font-size: 14px;
       color: #999;
       margin-top: 2rem;
       padding: 1rem;
       background: #f5f5f2;
       border-radius: 6px;
       line-height: 1.6;
+    }
+
+    .instructions-box {
+      background: #fff9e6;
+      border-left: 4px solid #c9a84c;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      margin-top: -1rem;
+    }
+
+    .instructions-box h3 {
+      font-size: 16px;
+      color: #1a1a18;
+      margin-bottom: 0.75rem;
+    }
+
+    .instructions-box p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .instructions-box ul {
+      margin-left: 1.5rem;
+      font-size: 15px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .instructions-box ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .section-intro {
+      font-size: 16px;
+    }
+
+    .input-label {
+      font-size: 16px;
+    }
+
+    .input-hint {
+      font-size: 14px;
+    }
+
+    .result-label {
+      font-size: 13px;
+    }
+
+    .result-amount {
+      font-size: 32px;
+    }
+
+    .total-label {
+      font-size: 13px;
+    }
+
+    .total-amount {
+      font-size: 48px;
+    }
+
+    .total-note {
+      font-size: 16px;
+    }
+
+    .next-step-headline {
+      font-size: 20px;
+    }
+
+    .next-step-text {
+      font-size: 16px;
+    }
+
+    .patterns-list {
+      background: #f9f9f6;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .patterns-list ul {
+      margin-left: 1.5rem;
+      font-size: 16px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .patterns-list ul li {
+      margin-bottom: 0.75rem;
     }
   </style>
 </head>
@@ -311,6 +402,17 @@
 
   <div class="container">
 
+    <!-- Instructions -->
+    <div class="instructions-box">
+      <h3>How to use this calculator</h3>
+      <p>Fill in all four tabs with your numbers. Each tab has example numbers — replace them with your actual situation.</p>
+      <ul>
+        <li><strong>Use your best estimate.</strong> Perfect accuracy isn't the goal. Rough numbers show you the pattern.</li>
+        <li><strong>Click through all 4 tabs.</strong> If you skip a tab, the calculator uses default example numbers for that section.</li>
+        <li><strong>The total adds them all up.</strong> Each cost shown separately. The total is what invisibility costs you across all four areas.</li>
+      </ul>
+    </div>
+
     <!-- Tabs -->
     <div class="tab-grid">
       <button class="tab-button active" onclick="showTab('customer', event)">Customer selection</button>
@@ -322,7 +424,7 @@
     <!-- Customer Selection Tab -->
     <div id="customer" class="detail-section active">
       <div class="section-intro">
-        <strong>The pattern:</strong> Your best-fit clients close in half the time, need fewer revision cycles, and stay longer. Your worst-fit clients take twice as long, eat up twice the support, and leave in months. You're spending equal sales effort to acquire both.
+        <strong>Description:</strong> Your best-fit clients close faster, need fewer revisions, and stay longer. Your worst-fit clients take twice as long, require more support, and leave quickly. But you're spending equal sales effort to acquire both. The cost difference is invisible until you look at the data.
       </div>
 
       <div class="input-group">
@@ -364,7 +466,7 @@
     <!-- Ceiling Tab -->
     <div id="constraint" class="detail-section">
       <div class="section-intro">
-        <strong>The pattern:</strong> You hired, rebranded, ran campaigns, rebuilt the product. Revenue moved 8% and came back down. Not four separate failures — one signal repeating: none of those were the actual constraint.
+        <strong>Description:</strong> You've hired, rebranded, run campaigns, rebuilt the product. Revenue moved slightly and came back down. Not four separate failures — one signal repeating: you've been solving for the wrong thing. This tab estimates the capital wasted on attempts that didn't work because they weren't addressing the real constraint.
       </div>
 
       <div class="input-group">
@@ -397,7 +499,7 @@
     <!-- Positioning Tab -->
     <div id="positioning" class="detail-section">
       <div class="section-intro">
-        <strong>The pattern:</strong> Your messaging defends against the cheap, fast alternative. But the deals you're actually losing go to a premium competitor you're not positioned against.
+        <strong>Description:</strong> Your messaging defends against one competitor. Meanwhile, you're losing deals to a different competitor entirely. You're positioned, but aimed at the wrong target. This tab estimates the revenue cost of positioning against the wrong battle.
       </div>
 
       <div class="input-group">
@@ -426,7 +528,7 @@
     <!-- Founder Tab -->
     <div id="founder" class="detail-section">
       <div class="section-intro">
-        <strong>The pattern:</strong> You've hired twice, rewritten the offer once, paused outreach twice. Each time you fixed the business. None addressed the belief underneath — that's costing you in repeated attempts.
+        <strong>Description:</strong> You've tried hiring, offer rewrites, campaign pauses — the same cycle repeating. Each fix addresses a visible symptom. None address the belief underneath. This tab estimates the capital spent treating symptoms instead of the root.
       </div>
 
       <div class="input-group">
@@ -458,28 +560,41 @@
       <div class="total-label">Total annual blind spot cost</div>
       <div class="total-amount" id="total-cost">$233,000</div>
       <div class="total-note">
-        This is what it costs to be blind to one or more of the four variables: founder, product, customers, competition. Once you see it, what does that visibility unlock?
+        This is the sum across all four invisible problems: customer selection, revenue ceiling, positioning, and founder beliefs. Each section above shows its individual cost. Together, they show what invisibility costs you annually across your entire business.
       </div>
     </div>
 
     <!-- Next Step -->
     <div class="next-step">
-      <div class="next-step-headline">Ready to see what you've been missing?</div>
+      <div style="margin: 0 0 2rem 0; text-align: left;">
+        <div style="font-size: 17px; font-weight: 600; color: #1a1a18; margin-bottom: 1rem;">In 20 years of working with founders, I've seen these patterns repeat:</div>
+        <div class="patterns-list" style="background: transparent; padding: 0; margin: 0; margin-bottom: 1rem;">
+          <ul style="margin-left: 1.5rem; text-align: left;">
+            <li>$300K–$500K in lost profit for a $5M business</li>
+            <li>$2M in new revenue without increasing capacity</li>
+            <li>$80K–$120K wasted annually on fixes that didn't add revenue</li>
+            <li>$275K–$400K in preventable churn — wrong customer selection</li>
+          </ul>
+        </div>
+        <div style="font-size: 14px; color: #999; line-height: 1.6;">
+          These are estimates based on pattern recognition, not promises. Every business is different. But if your numbers look anything like this, you can't afford not to see clearly.
+        </div>
+      </div>
+
+      <div class="next-step-headline">Ready to identify and fix what's holding you back?</div>
       <div class="next-step-text">
-        The Business Blind Spot Assessment is a 90-minute diagnostic where we identify the one constraint creating the greatest drag on your business, so you can stop spreading effort across ten priorities and put it where it compounds.
+        You probably already suspect which decisions are costing you. Your numbers tell a story your position inside the business won't let you read. That's exactly what the 15 minutes are for. Book a time here.
       </div>
-      <a href="mailto:hello@patriciarubio.com?subject=Schedule%20a%20Business%20Blind%20Spot%20Assessment" class="cta-button">Schedule a diagnostic ($2,800)</a>
-      <div class="disclaimer">
-        <strong>Important:</strong> These are estimates based on patterns across 2,500+ teams, not predictions. Every business is different. But if your numbers look anything like this — you can't afford not to see clearly.
-      </div>
+      
+      <a href="https://calendly.com/patricia-rubio/15-min-free-consultation" class="cta-button">Book a free 15-minute call</a>
     </div>
 
   </div>
 
   <footer>
     <p>
-      <strong>Customers Fit</strong> — Strategic consulting for founders who want clarity.<br>
-      <a href="https://www.patriciarubio.com">Learn more</a> · <a href="mailto:hello@patriciarubio.com">hello@patriciarubio.com</a>
+      <strong>Customers Fit</strong> — X-Ray vision for invisible business constraints.<br>
+      <a href="https://customersfit.com/">Learn more</a>
     </p>
   </footer>
 
