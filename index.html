@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's Your Blind Spot Costing You? | Customers Fit</title>
+  <meta name="description" content="Calculate the real cost of invisible business problems. Estimate revenue loss from customer selection, positioning, founder beliefs, and constraint misalignment.">
+  <meta name="og:title" content="What's Your Blind Spot Costing You?">
+  <meta name="og:description" content="Calculate the cost of not seeing your business clearly. See what invisibility costs in revenue, time, and opportunity.">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: #f5f5f2;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      color: #333;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0da;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1a1a18;
+    }
+
+    header p {
+      font-size: 15px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .tab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #e0e0da;
+    }
+
+    .tab-button {
+      padding: 0.75rem 1rem;
+      border: 1px solid #d0cfc9;
+      border-radius: 6px;
+      background: #fff;
+      color: #666;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .tab-button:hover {
+      border-color: #999;
+      background: #fafaf8;
+    }
+
+    .tab-button.active {
+      background: #c9a84c;
+      color: #fff;
+      border-color: #c9a84c;
+    }
+
+    .detail-section {
+      display: none;
+      background: #fff;
+      border: 1px solid #e0e0da;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .detail-section.active {
+      display: block;
+    }
+
+    .section-intro {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0ed;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a18;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-hint {
+      font-size: 12px;
+      color: #999;
+      margin-top: 0.25rem;
+    }
+
+    input[type="number"],
+    input[type="range"],
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d0cfc9;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #333;
+      background: #fafaf8;
+      font-family: inherit;
+    }
+
+    input[type="number"]:focus,
+    input[type="range"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #c9a84c;
+      background: #fff;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .range-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .range-display span {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .range-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: #c9a84c;
+    }
+
+    .result-box {
+      background: #f0f8f4;
+      border-left: 3px solid #27ae60;
+      padding: 1.25rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+    }
+
+    .result-label {
+      font-size: 11px;
+      color: #0f6e56;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-amount {
+      font-size: 28px;
+      font-weight: 600;
+      color: #0f6e56;
+    }
+
+    .total-section {
+      background: #fafaf8;
+      border: 2px solid #d0cfc9;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .total-label {
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .total-amount {
+      font-size: 42px;
+      font-weight: 600;
+      color: #1a1a18;
+      margin-bottom: 0.75rem;
+    }
+
+    .total-note {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .next-step {
+      background: #fff;
+      border: 1px solid #e0e0da;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .next-step-headline {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a18;
+      margin-bottom: 0.75rem;
+    }
+
+    .next-step-text {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #c9a84c;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cta-button:hover {
+      background: #b8941e;
+      text-decoration: none;
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid #e0e0da;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #c9a84c;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #999;
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #f5f5f2;
+      border-radius: 6px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>What's Your Blind Spot Costing You?</h1>
+    <p>Most founders spend months (and thousands) fixing the wrong thing because they can't see the real constraint. Below, estimate what invisibility costs your business.</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Tabs -->
+    <div class="tab-grid">
+      <button class="tab-button active" onclick="showTab('customer', event)">Customer selection</button>
+      <button class="tab-button" onclick="showTab('constraint', event)">Revenue ceiling</button>
+      <button class="tab-button" onclick="showTab('positioning', event)">Positioning misdirection</button>
+      <button class="tab-button" onclick="showTab('founder', event)">Founder belief</button>
+    </div>
+
+    <!-- Customer Selection Tab -->
+    <div id="customer" class="detail-section active">
+      <div class="section-intro">
+        <strong>The pattern:</strong> Your best-fit clients close in half the time, need fewer revision cycles, and stay longer. Your worst-fit clients take twice as long, eat up twice the support, and leave in months. You're spending equal sales effort to acquire both.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">What's your average deal size?</label>
+        <input type="number" id="deal-size" value="45000" onchange="calculateAll()" />
+        <div class="input-hint">Include implementation, annual value, or average contract value</div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Roughly, what % of new clients this year were wrong-fit?</label>
+        <div class="range-display">
+          <span>20%</span>
+          <input type="range" id="customer-pct" min="20" max="80" value="40" step="5" onchange="updateCustomerPct()" />
+          <span>80%</span>
+        </div>
+        <div style="text-align: center;">
+          <span class="range-value" id="customer-pct-display">40%</span>
+        </div>
+        <div class="input-hint">Wrong-fit = longer close, higher revision cycles, early churn</div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">How long do wrong-fit clients typically stay?</label>
+        <select id="customer-months" onchange="calculateAll()">
+          <option value="6">6 months</option>
+          <option value="9">9 months</option>
+          <option value="12" selected>12 months</option>
+          <option value="18">18 months</option>
+        </select>
+      </div>
+
+      <div class="result-box">
+        <div class="result-label">Customer selection cost</div>
+        <div class="result-amount" id="customer-result">$18,000</div>
+        <div class="input-hint" style="color: #0f6e56; margin-top: 0.5rem;">Revenue at risk from wrong-customer churn this year</div>
+      </div>
+    </div>
+
+    <!-- Ceiling Tab -->
+    <div id="constraint" class="detail-section">
+      <div class="section-intro">
+        <strong>The pattern:</strong> You hired, rebranded, ran campaigns, rebuilt the product. Revenue moved 8% and came back down. Not four separate failures — one signal repeating: none of those were the actual constraint.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Current annual revenue</label>
+        <input type="number" id="revenue" value="500000" onchange="calculateAll()" />
+        <div class="input-hint">Total revenue last year</div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">How many attempted "fixes" in the last 18 months?</label>
+        <select id="fix-count" onchange="calculateAll()">
+          <option value="2">2 (hire + campaign)</option>
+          <option value="3" selected>3 (hire + campaign + product rebuild)</option>
+          <option value="4">4 or more</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Average cost per attempt</label>
+        <input type="number" id="attempt-cost" value="25000" onchange="calculateAll()" />
+        <div class="input-hint">Salary, contractor, ad spend, dev time (rough estimate)</div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-amount" id="constraint-result">$75,000</div>
+        <div class="input-hint" style="color: #0f6e56; margin-top: 0.5rem;">Capital spent confirming the wrong thing was the problem</div>
+      </div>
+    </div>
+
+    <!-- Positioning Tab -->
+    <div id="positioning" class="detail-section">
+      <div class="section-intro">
+        <strong>The pattern:</strong> Your messaging defends against the cheap, fast alternative. But the deals you're actually losing go to a premium competitor you're not positioned against.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Average value of a lost deal</label>
+        <input type="number" id="lost-deal" value="40000" onchange="calculateAll()" />
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">How many premium deals have you lost in the last 12 months?</label>
+        <div class="range-display">
+          <span>1</span>
+          <input type="range" id="lost-count" min="1" max="10" value="3" step="1" onchange="updateLostCount()" />
+          <span>10</span>
+        </div>
+        <div style="text-align: center;">
+          <span class="range-value" id="lost-count-display">3 deals</span>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-amount" id="positioning-result">$120,000</div>
+        <div class="input-hint" style="color: #0f6e56; margin-top: 0.5rem;">Revenue fought for and lost to the wrong competitor</div>
+      </div>
+    </div>
+
+    <!-- Founder Tab -->
+    <div id="founder" class="detail-section">
+      <div class="section-intro">
+        <strong>The pattern:</strong> You've hired twice, rewritten the offer once, paused outreach twice. Each time you fixed the business. None addressed the belief underneath — that's costing you in repeated attempts.
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">How much have you invested in attempts this year?</label>
+        <input type="number" id="founder-invest" value="50000" onchange="calculateAll()" />
+        <div class="input-hint">Team time, contractors, courses, software, consulting</div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">What % of that addressed the belief, not the symptom?</label>
+        <div class="range-display">
+          <span>0%</span>
+          <input type="range" id="founder-pct" min="0" max="100" value="40" step="10" onchange="updateFounderPct()" />
+          <span>100%</span>
+        </div>
+        <div style="text-align: center;">
+          <span class="range-value" id="founder-pct-display">40%</span>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-amount" id="founder-result">$20,000</div>
+        <div class="input-hint" style="color: #0f6e56; margin-top: 0.5rem;">Capital treating the symptom instead of the root</div>
+      </div>
+    </div>
+
+    <!-- Total Cost -->
+    <div class="total-section">
+      <div class="total-label">Total annual blind spot cost</div>
+      <div class="total-amount" id="total-cost">$233,000</div>
+      <div class="total-note">
+        This is what it costs to be blind to one or more of the four variables: founder, product, customers, competition. Once you see it, what does that visibility unlock?
+      </div>
+    </div>
+
+    <!-- Next Step -->
+    <div class="next-step">
+      <div class="next-step-headline">Ready to see what you've been missing?</div>
+      <div class="next-step-text">
+        The Business Blind Spot Assessment is a 90-minute diagnostic where we identify the one constraint creating the greatest drag on your business, so you can stop spreading effort across ten priorities and put it where it compounds.
+      </div>
+      <a href="mailto:hello@patriciarubio.com?subject=Schedule%20a%20Business%20Blind%20Spot%20Assessment" class="cta-button">Schedule a diagnostic ($2,800)</a>
+      <div class="disclaimer">
+        <strong>Important:</strong> These are estimates based on patterns across 2,500+ teams, not predictions. Every business is different. But if your numbers look anything like this — you can't afford not to see clearly.
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>
+      <strong>Customers Fit</strong> — Strategic consulting for founders who want clarity.<br>
+      <a href="https://www.patriciarubio.com">Learn more</a> · <a href="mailto:hello@patriciarubio.com">hello@patriciarubio.com</a>
+    </p>
+  </footer>
+
+  <script>
+    function showTab(tabName, event) {
+      event.preventDefault();
+      document.querySelectorAll('.detail-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+      calculateAll();
+    }
+
+    function updateCustomerPct() {
+      const pct = document.getElementById('customer-pct').value;
+      document.getElementById('customer-pct-display').textContent = pct + '%';
+      calculateAll();
+    }
+
+    function updateLostCount() {
+      const count = document.getElementById('lost-count').value;
+      document.getElementById('lost-count-display').textContent = Math.round(count) + ' deal' + (count > 1 ? 's' : '');
+      calculateAll();
+    }
+
+    function updateFounderPct() {
+      const pct = document.getElementById('founder-pct').value;
+      document.getElementById('founder-pct-display').textContent = Math.round(pct) + '%';
+      calculateAll();
+    }
+
+    function formatCurrency(n) {
+      return '$' + Math.round(n).toLocaleString();
+    }
+
+    function calculateAll() {
+      const dealSize = parseFloat(document.getElementById('deal-size').value) || 0;
+      const customerPct = parseFloat(document.getElementById('customer-pct').value) || 0;
+      const customerMonths = parseFloat(document.getElementById('customer-months').value) || 12;
+      const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+      const fixCount = parseFloat(document.getElementById('fix-count').value) || 3;
+      const attemptCost = parseFloat(document.getElementById('attempt-cost').value) || 0;
+      const lostDeal = parseFloat(document.getElementById('lost-deal').value) || 0;
+      const lostCount = parseFloat(document.getElementById('lost-count').value) || 3;
+      const founderInvest = parseFloat(document.getElementById('founder-invest').value) || 0;
+      const founderPct = parseFloat(document.getElementById('founder-pct').value) || 0;
+
+      // Customer selection: wasted revenue from early churn
+      const customerCost = (dealSize * (customerPct / 100)) * (1 - (customerMonths / 24));
+      document.getElementById('customer-result').textContent = formatCurrency(customerCost);
+
+      // Ceiling: capital spent on wrong fixes
+      const constraintCost = fixCount * attemptCost;
+      document.getElementById('constraint-result').textContent = formatCurrency(constraintCost);
+
+      // Positioning: lost deals
+      const positioningCost = lostDeal * lostCount;
+      document.getElementById('positioning-result').textContent = formatCurrency(positioningCost);
+
+      // Founder wound: wasted investment
+      const founderCost = founderInvest * (founderPct / 100);
+      document.getElementById('founder-result').textContent = formatCurrency(founderCost);
+
+      // Total
+      const total = customerCost + constraintCost + positioningCost + founderCost;
+      document.getElementById('total-cost').textContent = formatCurrency(total);
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', calculateAll);
+  </script>
+
+</body>
+</html>
